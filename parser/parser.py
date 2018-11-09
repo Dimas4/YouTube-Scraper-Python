@@ -19,10 +19,12 @@ class Parser:
         lists = []
         for ind, element in enumerate(cur_list):
             try:
-                lists.append({'video_url': element.find('h3', class_='yt-lockup-title ').find('a').get('href'),
-                     'video_name': element.find('h3', class_='yt-lockup-title ').find('a').text,
-                     'author_url': element.find('div', class_='yt-lockup-byline').find('a').get('href'),
-                     'author_name': element.find('div', class_='yt-lockup-byline').find('a').text
+                video = element.find('h3', class_='yt-lockup-title ').find('a')
+                author = element.find('h3', class_='yt-lockup-title ').find('a')
+                lists.append({'video_url': video.get('href'),
+                     'video_name': video.text,
+                     'author_url': author.get('href'),
+                     'author_name': author.text
                      })
             except Exception as e:
                 print(e)
@@ -56,3 +58,4 @@ class Parser:
         result_custom = self.parse_custom_query(custom_html)
         df = pd.DataFrame(result_custom)
         df.to_csv(custom_filename)
+
