@@ -1,0 +1,3 @@
+urls:
+  TREND: 'https://www.youtube.com/feed/trending'
+  CUSTOM: 'https://www.youtube.com/results?search_query={}'
